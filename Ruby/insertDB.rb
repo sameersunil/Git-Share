@@ -8,7 +8,7 @@ tableName = "Products"
 prodCat = "Beverages"
 begin
 
-    con = PG.connect :dbname => 'development', :user => 'postgres'
+    con = PG.connect :dbname => 'production', :user => 'postgres'
     con.prepare 'insertStm', "INSERT INTO " +  tableName + " (cat, name, price, img_url, created_at, updated_at) VALUES($1, $2, $3, $4, $5, $6)"
     
     productJsonStringArray = File.open(jsonFileName).read.split("#")
