@@ -5,10 +5,11 @@ require 'json'
 
 jsonFileName = "users.json"
 tableName = "Users"
+dbName = ARGV[0]
 
 begin
 
-    con = PG.connect :dbname => 'production', :user => 'postgres'
+    con = PG.connect :dbname => dbName, :user => 'postgres'
     con.prepare 'insertStm', "INSERT INTO " +  tableName + " (email, pwd, created_at, updated_at) VALUES($1, $2, $3, $4)"
     
     userJsonStringArray = File.open(jsonFileName).read.split("#")
